@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $("#button").click(function(){
-        $("#container").hide();
+        $("#container1").toggleClass("color");
+        $(this).text("Hello");
+        $(this).toggleClass("clicked");
     });
 });
