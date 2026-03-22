@@ -7,24 +7,95 @@
     align-items: center;
 }
 
-.link {
-    text-decoration: none;
-    color: #000;
-    font-size: 20px;
-    font-weight: regular;
-    margin: 10px;
-    padding: 4px 15px;
-    border: 1px solid #000;
-    border-radius: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+/* Home — light → dark blue sky, rotating gradient stars */
+@keyframes home-star-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body.home {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        168deg,
+        #e0f2fe 0%,
+        #7dd3fc 22%,
+        #38bdf8 45%,
+        #1d4ed8 72%,
+        #0f172a 100%
+    );
+    background-attachment: fixed;
     font-family: 'Helvetica', sans-serif;
 }
 
-.link:hover {
-    background-color: #000;
-    color: #fff;
+body.home #container.home-nav {
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: clamp(2rem, 6vw, 4rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    background: transparent;
+}
+
+body.home .home-star {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(8.5rem, 26vw, 12rem);
+    height: clamp(8.5rem, 26vw, 12rem);
+    text-decoration: none;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+    box-shadow: 0 10px 32px rgba(120, 53, 15, 0.35);
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+    animation: home-star-spin 22s linear infinite;
+}
+
+body.home .home-star:hover {
+    filter: brightness(1.1) saturate(1.05);
+    box-shadow: 0 14px 44px rgba(217, 119, 6, 0.5);
+}
+
+body.home .home-star--1 {
+    background: linear-gradient(150deg, #fde68a 0%, #fbbf24 40%, #d97706 100%);
+    animation-duration: 20s;
+}
+
+body.home .home-star--2 {
+    background: linear-gradient(165deg, #fef3c7 0%, #fcd34d 35%, #ca8a04 100%);
+    animation-duration: 26s;
+    animation-direction: reverse;
+}
+
+body.home .home-star--3 {
+    background: linear-gradient(140deg, #fff7d6 0%, #f59e0b 45%, #b45309 100%);
+    animation-duration: 18s;
+}
+
+body.home .home-star--4 {
+    background: linear-gradient(155deg, #ffedd5 0%, #eab308 50%, #a16207 100%);
+    animation-duration: 24s;
+    animation-direction: reverse;
 }
 
 body {
@@ -32,14 +103,407 @@ body {
     font-family: 'Helvetica', sans-serif;
 }   
 
-#container1{
-    width: 400px;
-    height: 400px;
-    border-radius:100%;
-    background-color: black;
+/* Page 1 — grid of circles */
+body.page1 {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #ffd6e8;
+    color: #1a1a1a;
+    transition: background-color 0.45s ease, color 0.45s ease;
 }
 
-#container1.color {
-    background-color: red; 
+body.page1.page1-dark {
+    background-color: #000;
+    color: #ffd6e8;
 }
 
+body.page1 .circle-grid {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: clamp(0.5rem, 2vw, 1.25rem);
+    gap: clamp(0.25rem, 1.5vw, 0.75rem);
+}
+
+body.page1 .container1 {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    transition: background-color 0.45s ease;
+}
+
+body.page1.page1-dark .container1 {
+    background-color: #ffd6e8;
+}
+
+body.page1 .page1-controls {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 10;
+    text-align: center;
+}
+
+body.page1 .page1-controls #button {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.65rem 1.75rem;
+    border-radius: 999px;
+    cursor: pointer;
+    background-color: #000;
+    color: #ffd6e8;
+    border: 2px solid #ffbdd9;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+        transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+body.page1 .page1-controls #button:hover {
+    background-color: #ffbdd9;
+    color: #000;
+    border-color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 126, 179, 0.45);
+}
+
+body.page1.page1-dark .page1-controls #button {
+    background-color: #ffd6e8;
+    color: #000;
+    border-color: #000;
+    box-shadow: 0 4px 18px rgba(255, 214, 232, 0.35);
+}
+
+body.page1.page1-dark .page1-controls #button:hover {
+    background-color: #000;
+    color: #ffd6e8;
+    border-color: #ffbdd9;
+}
+
+body.page1 .page1-controls a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Page 2 — animated red → orange background, centered green → blue square */
+@keyframes page2-bg-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body.page2 {
+    margin: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 0;
+    padding-bottom: 4rem;
+    background: linear-gradient(
+        120deg,
+        #c41e1e,
+        #ff4500,
+        #ff8c00,
+        #e63900,
+        #ff6b00
+    );
+    background-size: 400% 400%;
+    animation: page2-bg-shift 14s ease-in-out infinite;
+}
+
+body.page2 .page2-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: minmax(130px, 1fr);
+    min-height: calc(100vh - 4rem);
+    width: 100%;
+    box-sizing: border-box;
+    padding: clamp(1.75rem, 4vw, 3.25rem);
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+    align-content: stretch;
+}
+
+@media (min-width: 1200px) {
+    body.page2 .page2-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-rows: repeat(5, minmax(0, 1fr));
+    }
+}
+
+body.page2 .page2-square {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    background: linear-gradient(145deg, #22c55e, #0ea5e9, #2563eb);
+    background-size: 100% 100%;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: clamp(0.65rem, 1.5vw, 1rem);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+body.page2 .page2-square:hover {
+    transform: scale(1.06);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    z-index: 1;
+}
+
+body.page2 .page2-form {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-height: 0;
+}
+
+body.page2 .page2-label {
+    color: #fff;
+    font-size: clamp(0.65rem, 1.35vw, 0.82rem);
+    font-weight: 600;
+    line-height: 1.25;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+body.page2 .page2-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.35rem 0.45rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: clamp(0.7rem, 1.25vw, 0.85rem);
+    background-color: rgba(255, 255, 255, 0.92);
+    transition: border-color 0.2s ease;
+}
+
+body.page2 .page2-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.95);
+}
+
+body.page2 .page2-back {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Helvetica', sans-serif;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+body.page2 .page2-back:hover {
+    color: #fef3c7;
+}
+
+/* Page 3 — slide toggle, three columns, animated mint + pink gradient */
+@keyframes page3-bg-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body.page3 {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Helvetica', sans-serif;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    padding-bottom: 4rem;
+    box-sizing: border-box;
+    background: linear-gradient(
+        125deg,
+        #a7f3d0,
+        #d1fae5,
+        #fbcfe8,
+        #f9a8d4,
+        #fce7f3,
+        #99f6e4,
+        #a7f3d0
+    );
+    background-size: 400% 400%;
+    animation: page3-bg-shift 16s ease-in-out infinite;
+}
+
+body.page3 .page3-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    max-width: min(100%, 72rem);
+    margin: 0 auto;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    body.page3 .page3-wrap {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.page3 .page3-row {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(15, 118, 110, 0.18);
+}
+
+body.page3 .page3-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 1.35rem);
+    cursor: pointer;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.35));
+    border: 1px solid rgba(20, 83, 45, 0.2);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+body.page3 .page3-title:hover,
+body.page3 .page3-title:focus-visible {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
+    border-color: rgba(20, 83, 45, 0.35);
+    outline: none;
+}
+
+body.page3 .page3-click-text {
+    font-family: 'Pinyon Script', 'Times New Roman', Times, serif;
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #701a3d;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+body.page3 .page3-content {
+    display: none;
+    padding: clamp(0.75rem, 2vw, 1.25rem);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(20, 83, 45, 0.15);
+    border-top: none;
+    text-align: center;
+}
+
+body.page3 .page3-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.65rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+body.page3 .page3-back {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #701a3d;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+body.page3 .page3-back:hover {
+    color: #4a0424;
+}
+
+/* Page 4 — jQuery fadeToggle pink cover over image (fadeIn / fadeOut style) */
+body.page4 {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f1f5f9;
+    font-family: 'Pinyon Script', 'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem 5rem;
+    box-sizing: border-box;
+}
+
+body.page4 .page4-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: min(96vw, 44rem);
+    width: 100%;
+}
+
+body.page4 .page4-stage {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.15);
+    background: #fff;
+}
+
+body.page4 .page4-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+body.page4 .page4-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(160deg, #fbcfe8 0%, #f472b6 50%, #ec4899 100%);
+    z-index: 1;
+}
+
+body.page4 .page4-btn {
+    font-family: 'Pinyon Script', 'Times New Roman', Times, serif;
+    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+    font-weight: 400;
+    padding: 0.65rem 1.75rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(135deg, #64748b, #334155);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.page4 .page4-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.28);
+}
+
+body.page4 .page4-back {
+    color: #475569;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+body.page4 .page4-back:hover {
+    color: #0f172a;
+}

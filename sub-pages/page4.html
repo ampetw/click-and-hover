@@ -1,12 +1,26 @@
 <html>
     <head>
         <title>Page 4</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../style.css">
-        <script src="../script.js"></script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../script.js"></script>
     </head>
-    <body>
-        <h1>Page 4</h1>
-        <p>This is the fourth page</p>
-        <a href="../index.html">Go back to the main page</a>
+    <body class="page4">
+        <div class="page4-inner">
+            <div class="page4-stage">
+                <img
+                    class="page4-img"
+                    src="../assets/page4-reveal.png"
+                    alt="Illustration of a cheerful white creature"
+                    loading="lazy"
+                >
+                <div id="page4-cover" class="page4-cover" aria-hidden="true"></div>
+            </div>
+            <button type="button" id="page4-toggle" class="page4-btn">How I feel atm</button>
+
+        </div>
     </body>
 </html>
